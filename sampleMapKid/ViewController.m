@@ -63,8 +63,8 @@
     MKPointAnnotation *pin =[[MKPointAnnotation alloc]init];    //ピンのオブジェクトを生成。（インスタンス）
     pin.coordinate=CLLocationCoordinate2DMake(10.317347, 123.905759);//ピンの場所を指定。
     
-    pin.title=@"アヤラ";
-    pin.subtitle=@"セブで一番お大きい";
+    pin.title=@"ayala";
+    pin.subtitle=@"セブで２番めに大きい";
     
     [mapView addAnnotation:pin];
     
@@ -72,7 +72,7 @@
     pin2.coordinate=CLLocationCoordinate2DMake(10.311715, 123.918332);
     
     pin2.title=@"SMモール";
-    pin2.subtitle=@"セブで2番めに大きい";
+    pin2.subtitle=@"セブで１番めに大きい";
     
     [mapView addAnnotation:pin2];
     
