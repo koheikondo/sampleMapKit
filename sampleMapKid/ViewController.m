@@ -21,6 +21,11 @@
     //MapViewoオブジェクトを生成
     MKMapView *mapView =[[MKMapView alloc] init];
     
+    //デリゲートを設定
+    mapView.delegate=self;
+    //マップビューが認識できるActionをviewcontrollerの中で感知することができる。
+    
+    
     //大きさ、位置を決定
     mapView.frame = CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height-20);//iphone4s似合うくらいの大きさ今は設定。
                 //左端０，上のどこからスタートするか（20）、上の時間表示などに被らないようにするには２０が適切。
@@ -104,6 +109,26 @@
     [self.view addSubview:mapView];
     
 }
+
+//ピンを表示する際に発動されるデリゲートメソッド
+//ピンが降ってくるアニメーションの設定
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    static NSString *pinIdentifier =@"PinAnnotationID";
+    //ピンの情報の再利用
+    MKPinAnnotationView *pinView=(MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pinIdentifier];
+    
+    if (pinView==nil) {
+        //初期化
+        pinView =[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:pinIdentifier];
+        
+        //落ちるアニメーションの設定
+        pinView.animatesDrop=YES;
+    }
+    
+    return pinView;
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
